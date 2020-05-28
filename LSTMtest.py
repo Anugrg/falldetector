@@ -47,9 +47,7 @@ Y_test = np.array(one_hot_encoder(Y_test_dataset)).reshape(-1, 5)
 
 X_test = np.array(X_test_list)
 
-
 lstm = tf.keras.models.load_model(args.model)
-
 pred = lstm.predict(X_test)
 n_classes = 5
 LABELS = [

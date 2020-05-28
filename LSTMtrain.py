@@ -42,44 +42,28 @@ def one_hot_encoder(data):
 
 parser = argparse.ArgumentParser(description='Training lstm model')
 parser.add_argument('--X_train_path', help='Path to training csv file.')
-# parser.add_argument('--X_test_path', help='Path to testing csv file.')
 parser.add_argument('--Y_train_path', help='Path to training csv file.')
-# parser.add_argument('--Y_test_path', help='Path to testing csv file.')
 parser.add_argument('--sequence_length', help='length of each sequence')
 parser.add_argument('--hidden_units', help='hidden units of lstm')
 parser.add_argument('--batch_size', help='batch size for training')
 parser.add_argument('--epochs', help='number of epochs to train')
 args = parser.parse_args()
 
-# We read the csv files and form sequences below
 X_train_path = args.X_train_path
-# X_test_path = args.X_test_path
 Y_train_path = args.Y_train_path
-# Y_test_path = args.Y_test_path
 
 X_train_csv = pd.read_csv(X_train_path, header=None, encoding='utf-7')
-# X_test_csv = pd.read_csv(X_test_path, header=None, encoding='utf-7')
 Y_train_csv = pd.read_csv(Y_train_path, header=None, encoding='utf-7')
-# Y_test_csv = pd.read_csv(Y_test_path, header=None, encoding='utf-7')
 
 train_dataset = X_train_csv.values
-# test_dataset = X_test_csv.values
-
 X_train_dataset = train_dataset.astype(float)
-# X_test_dataset = test_dataset.astype(float)
 Y_train_dataset = Y_train_csv.values.tolist()
-# Y_test_dataset = Y_test_csv.values.tolist()
 
 X_train_list = create_sequence(X_train_dataset, args.sequence_length)
-# X_test_list = create_sequence(X_test_dataset, args.sequence_length)
 Y_train = np.array(one_hot_encoder(Y_train_dataset)).reshape(-1, 5)
-# Y_test = np.array(one_hot_encoder(Y_test_dataset)).reshape(-1, 5)
 
 X_train = np.array(X_train_list)
-# X_test = np.array(X_test_list)
-
 print("x train:", X_train.shape)
-# print("x test:", X_test.shape)
 
 # for imbalanced class otherwise comment
 class_weight = class_weight.compute_class_weight('balanced', np.unique(Y_train), np.array(Y_train_dataset).reshape(-1))
