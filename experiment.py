@@ -5,9 +5,6 @@ pad = []
 for i in range(0, 36):
     pad.append(0.0)
 
-
-
-
 print (np.array(pad).shape)
 
 temp = np.arange(36)

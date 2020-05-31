@@ -116,7 +116,7 @@ for dir_path, dir_names, files in os.walk(args.directory):
 print(np.array(X_train).shape)
 print(np.array(Y_train).shape)
 
-print(X_train[0][34].shape)
+print(X_train[0][0:33])
 
-print(np.array(Y_train))
+print(Y_train[0])
 
